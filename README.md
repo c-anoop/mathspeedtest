@@ -9,8 +9,9 @@ A customizable math speed test generator for kids, written in Go. This tool gene
   - **Speed Mode**: Comprehensive math practice with addition, subtraction, multiplication, and division
   - **Table Mode**: Focused multiplication table practice (1-10 tables)
 
-- **Customizable question count**: Generate any number of questions you need
-- **Clean output format**: Problems are displayed in a compact, easy-to-read format
+- **Customizable problem count**: Generate 1-50 individual math problems
+- **Two-column layout**: Compact display with problems arranged in columns
+- **Clean output format**: Problems are displayed in an organized, easy-to-read format
 - **Modern Go implementation**: Uses current best practices for random number generation
 
 ## Usage
@@ -22,26 +23,29 @@ A customizable math speed test generator for kids, written in Go. This tool gene
 ### Arguments
 
 - `operation`: Either "speed" or "table"
-- `count`: Number of questions to generate (positive integer)
+- `count`: Number of individual problems to generate (1-50)
 
 ### Examples
 
 ```bash
-# Generate 5 comprehensive speed test questions (20 problems total)
-./speedtest speed 5
+# Generate 10 individual speed test problems
+./speedtest speed 10
 
-# Generate 10 multiplication table questions
-./speedtest table 10
+# Generate 15 multiplication table problems
+./speedtest table 15
+
+# Generate maximum allowed problems (50)
+./speedtest speed 50
 
 # Show usage help
 ./speedtest
 ```
 
-## Question Types
+## Problem Types
 
 ### Speed Mode
 
-Each question includes 4 different operations:
+Individual problems cycling through 4 different operations:
 
 - **Addition**: 3-digit + 2-3 digit numbers
 - **Subtraction**: Ensures positive results
@@ -63,35 +67,38 @@ Each question includes 4 different operations:
 
 2. **Run the program:**
    ```bash
-   ./speedtest speed 5
+   ./speedtest speed 10
    ```
 
 ## Sample Output
 
-### Speed Mode
+### Speed Mode (Two-Column Layout)
 
 ```
-Math Speed Test - speed mode (2 questions)
+Math Speed Test - speed mode (10 problems)
 ========================================
-559 + 953 =
-527 - 488 =
-821 x 4 =
-612 ÷ 9 =
-149 + 496 =
-445 - 207 =
-762 x 6 =
-798 ÷ 6 =
+487 + 690 =                      775 - 398 =
+125 x 6 =                        522 ÷ 9 =
+804 + 437 =                      336 - 191 =
+866 x 9 =                        696 ÷ 4 =
+450 + 903 =                      818 - 589 =
 ```
 
-### Table Mode
+### Table Mode (Two-Column Layout)
 
 ```
-Math Speed Test - table mode (3 questions)
+Math Speed Test - table mode (8 problems)
 ========================================
-1 x 3 =
-2 x 5 =
-4 x 6 =
+9 x 7 =                          10 x 9 =
+5 x 2 =                          7 x 2 =
+4 x 3 =                          1 x 7 =
+9 x 7 =                          3 x 7 =
 ```
+
+## Limitations
+
+- Maximum 50 problems per session
+- Count must be a positive integer (1-50)
 
 ## Requirements
 

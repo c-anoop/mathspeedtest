@@ -35,29 +35,30 @@ func generateTableDodging() (int, int) {
 	return table, multiplier
 }
 
-func generateSpeedTestProblem(problemType int) {
+func generateSpeedTestProblem(problemType int) string {
 	switch problemType {
 	case 0: // Addition
 		a := generateRandomNumber(100, 999)
 		b := generateRandomNumber(10, 999)
-		fmt.Printf("%d + %d = \n", a, b)
+		return fmt.Sprintf("%d + %d = ", a, b)
 	case 1: // Subtraction
 		c := generateRandomNumber(100, 999)
 		d := generateRandomNumber(10, c)
-		fmt.Printf("%d - %d = \n", c, d)
+		return fmt.Sprintf("%d - %d = ", c, d)
 	case 2: // Multiplication
 		e := generateRandomNumber(100, 999)
 		f := generateRandomNumber(2, 9)
-		fmt.Printf("%d x %d = \n", e, f)
+		return fmt.Sprintf("%d x %d = ", e, f)
 	case 3: // Division
 		g, h := generateDivisibleNumbers()
-		fmt.Printf("%d ÷ %d = \n", g, h)
+		return fmt.Sprintf("%d ÷ %d = ", g, h)
 	}
+	return ""
 }
 
-func generateTableRow() {
+func generateTableProblem() string {
 	table, multiplier := generateTableDodging()
-	fmt.Printf("%d x %d = \n", table, multiplier)
+	return fmt.Sprintf("%d x %d = ", table, multiplier)
 }
 
 func main() {
@@ -84,6 +85,11 @@ func main() {
 		os.Exit(1)
 	}
 
+	if count > 50 {
+		fmt.Println("Error: count cannot be more than 50")
+		os.Exit(1)
+	}
+
 	// Validate operation
 	if operation != "speed" && operation != "table" {
 		fmt.Printf("Error: operation must be 'speed' or 'table', got '%s'\n", operation)
@@ -94,12 +100,27 @@ func main() {
 	fmt.Printf("Math Speed Test - %s mode (%d problems)\n", operation, count)
 	fmt.Println("========================================")
 
-	for i := 0; i < count; i++ {
+	for i := 0; i < count; i += 2 {
+		var problem1, problem2 string
+
 		if operation == "speed" {
 			// Cycle through all 4 operation types for variety
-			generateSpeedTestProblem(i % 4)
+			problem1 = generateSpeedTestProblem(i % 4)
+			if i+1 < count {
+				problem2 = generateSpeedTestProblem((i + 1) % 4)
+			}
 		} else {
-			generateTableRow()
+			problem1 = generateTableProblem()
+			if i+1 < count {
+				problem2 = generateTableProblem()
+			}
+		}
+
+		// Print in two columns with proper spacing
+		if problem2 != "" {
+			fmt.Printf("%-25s        %s\n", problem1, problem2)
+		} else {
+			fmt.Printf("%s\n", problem1)
 		}
 	}
 }
