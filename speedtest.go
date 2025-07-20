@@ -51,9 +51,9 @@ func generateDivisibleNumbers() (int, int) {
 }
 
 func generateTableDodging() (int, int) {
-	// Generate two random numbers where one is from 1-10 (table)
-	table := generateRandomNumber(1, 10)
-	multiplier := generateRandomNumber(1, 10)
+	// Generate two random numbers where one is from 2-9 (table)
+	table := generateRandomNumber(2, 9)
+	multiplier := generateRandomNumber(2, 9)
 
 	return table, multiplier
 }
